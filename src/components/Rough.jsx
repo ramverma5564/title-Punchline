@@ -1,27 +1,22 @@
 import React from "react"
-import boxesData from "./BoxesData"
-import Box from "./Boxes"
+import jokesData from "./JokesData"
+import Joke from "./Jokes"
 
 export default function Rough(){
-    const [squares, setSquares] = React.useState(boxesData)
 
-    function toggle(id){
-        setSquares(prevSquares => {
-            return prevSquares.map((square) => {
-                return square.id === id ? {...square, on : !square.on} : square
-            })
-        })
-    }
-    const squareElements = squares.map(square =>(
-        <Box 
-        key={square.id}
-        on={square.on}
-        toggle={() => {toggle(square.id)}}
-        />
-    ))
+    const jokeElement = jokesData.map(item => {
+        return (
+            <Joke
+            key={item.id}
+            title = {item.title}
+            punchline = {item.punchline}
+            />
+        )
+    })
+
     return(
         <main>
-            {squareElements}
+            {jokeElement}
         </main>
     )
 }
